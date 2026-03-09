@@ -10,8 +10,6 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-// import './App.css';
-
 import React from "react";
 import { Menu, MenuItem, MenuDivider } from "@swc-react/menu";
 import "@spectrum-web-components/theme/theme-light.js";
@@ -20,7 +18,11 @@ import "@spectrum-web-components/theme/scale-medium.js";
 import "@spectrum-web-components/theme/express/scale-medium.js";
 import { Theme } from "@swc-react/theme";
 
-function App({ panelId = "vanilla" }) {
+export interface AppProps {
+  panelId?: string;
+}
+
+function App({ panelId = "vanilla" }: AppProps) {
   if (panelId === "tools") {
     return (
       <div>

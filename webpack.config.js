@@ -30,6 +30,7 @@ const copyStatics = {
 };
 
 const shared = {
+  entry: "./src/index.tsx",
   devtool: false,
   externals: {
     uxp: "commonjs2 uxp",
@@ -40,7 +41,7 @@ const shared = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "src/index.html", // to import index.html file inside index.js
+      template: "src/index.html",
     }),
     new CopyWebpackPlugin(copyStatics),
     new webpack.optimize.LimitChunkCountPlugin({
@@ -53,11 +54,9 @@ const shared = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, // .js and .jsx files
-        exclude: /node_modules/, // excluding the node_modules folder
-        use: {
-          loader: "babel-loader",
-        },
+        test: /\.(ts|tsx|js|jsx)$/,
+        exclude: /node_modules/,
+        use: { loader: "babel-loader" },
       },
       {
         test: /\.(sa|sc|c)ss$/, // styles files
@@ -66,7 +65,7 @@ const shared = {
     ],
   },
   resolve: {
-    extensions: [".js", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".json"],
     // This is required for the spectrum web component to properly work in UXP
     alias: aliases,
   },

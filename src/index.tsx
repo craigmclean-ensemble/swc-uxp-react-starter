@@ -12,15 +12,20 @@ governing permissions and limitations under the License.
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.js";
-window.React = React;
-
+import App from "./App";
 import { Theme } from "@swc-react/theme";
 
-// Static import only — dynamic import("uxp") triggers eval in the bundle, which UXP disallows
+declare global {
+  interface Window {
+    React: typeof React;
+  }
+}
+
+window.React = React;
+
 import { entrypoints } from "uxp";
 
-function mount(container, panelId) {
+function mount(container: HTMLElement | null, panelId: string): void {
   if (!container) return;
   const root = ReactDOM.createRoot(container);
   root.render(
@@ -34,20 +39,20 @@ function mount(container, panelId) {
 
 const panelHandlers = {
   vanilla: {
-    create(rootNode) {
+    create(rootNode: HTMLElement) {
       const container = rootNode || document.getElementById("root");
       mount(container, "vanilla");
     },
   },
   tools: {
-    create(rootNode) {
+    create(rootNode: HTMLElement) {
       const container = rootNode || document.getElementById("root");
       mount(container, "tools");
     },
   },
 };
 
-if (typeof entrypoints !== "undefined" && entrypoints && entrypoints.setup) {
+if (typeof entrypoints !== "undefined" && entrypoints?.setup) {
   entrypoints.setup({ panels: panelHandlers });
 } else {
   mount(document.getElementById("root"), "vanilla");
