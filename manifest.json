@@ -30,6 +30,29 @@
         "width": 230,
         "height": 300
       }
+    },
+    {
+      "type": "panel",
+      "id": "tools",
+      "label": {
+        "default": "Tools Panel"
+      },
+      "minimumSize": {
+        "width": 230,
+        "height": 200
+      },
+      "maximumSize": {
+        "width": 2000,
+        "height": 2000
+      },
+      "preferredDockedSize": {
+        "width": 230,
+        "height": 300
+      },
+      "preferredFloatingSize": {
+        "width": 230,
+        "height": 300
+      }
     }
   ],
   "host": [

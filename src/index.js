@@ -17,11 +17,38 @@ window.React = React;
 
 import { Theme } from "@swc-react/theme";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <Theme theme="spectrum" scale="medium" color="light">
-      <App />
-    </Theme>
-  </React.StrictMode>
-);
+// Static import only — dynamic import("uxp") triggers eval in the bundle, which UXP disallows
+import { entrypoints } from "uxp";
+
+function mount(container, panelId) {
+  if (!container) return;
+  const root = ReactDOM.createRoot(container);
+  root.render(
+    <React.StrictMode>
+      <Theme theme="spectrum" scale="medium" color="light">
+        <App panelId={panelId} />
+      </Theme>
+    </React.StrictMode>
+  );
+}
+
+const panelHandlers = {
+  vanilla: {
+    create(rootNode) {
+      const container = rootNode || document.getElementById("root");
+      mount(container, "vanilla");
+    },
+  },
+  tools: {
+    create(rootNode) {
+      const container = rootNode || document.getElementById("root");
+      mount(container, "tools");
+    },
+  },
+};
+
+if (typeof entrypoints !== "undefined" && entrypoints && entrypoints.setup) {
+  entrypoints.setup({ panels: panelHandlers });
+} else {
+  mount(document.getElementById("root"), "vanilla");
+}

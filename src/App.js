@@ -20,7 +20,16 @@ import "@spectrum-web-components/theme/scale-medium.js";
 import "@spectrum-web-components/theme/express/scale-medium.js";
 import { Theme } from "@swc-react/theme";
 
-function App() {
+function App({ panelId = "vanilla" }) {
+  if (panelId === "tools") {
+    return (
+      <div>
+        <h1>Tools Panel</h1>
+        <p>Add tools and actions for this panel.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1>Welcome</h1>
