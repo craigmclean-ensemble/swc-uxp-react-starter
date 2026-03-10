@@ -35,6 +35,11 @@ function App({ panelId = "vanilla" }: AppProps) {
   return (
     <div>
       <h1>Welcome</h1>
+      <p>
+        <button type="button" onClick={() => window.openModal?.()}>
+          Show Modal
+        </button>
+      </p>
       <Theme theme="spectrum" scale="medium" color="light">
         <Menu selects="single">
           <MenuItem selected>Sample Menu</MenuItem>

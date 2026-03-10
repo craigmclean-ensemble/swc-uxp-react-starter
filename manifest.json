@@ -9,6 +9,13 @@
   },
   "entrypoints": [
     {
+      "type": "command",
+      "id": "showModal",
+      "label": {
+        "default": "Show Modal"
+      }
+    },
+    {
       "type": "panel",
       "id": "vanilla",
       "label": {

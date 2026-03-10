@@ -1,4 +1,15 @@
 /**
+ * UXP extends HTMLDialogElement with uxpShowModal (Photoshop).
+ */
+interface HTMLDialogElement {
+  uxpShowModal?(options: {
+    title?: string;
+    resize?: "none" | "horizontal" | "vertical" | "both";
+    size?: { width: number; height: number };
+  }): Promise<string | undefined>;
+}
+
+/**
  * Type declarations for the UXP host module (provided at runtime by Photoshop).
  * @see https://developer.adobe.com/photoshop/uxp/2022/guides/uxp_guide/uxp-misc/manifest-v5/
  */
