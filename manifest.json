@@ -7,6 +7,10 @@
   "featureFlags": {
     "enableSWCSupport": true
   },
+  "requiredPermissions": {
+    "launchProcess": { "schemes": ["https", "http"] },
+    "network": { "domains": ["http://localhost:8000"] }
+  },
   "entrypoints": [
     {
       "type": "command",

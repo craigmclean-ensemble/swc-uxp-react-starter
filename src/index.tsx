@@ -26,6 +26,7 @@ declare global {
 window.React = React;
 
 import { entrypoints } from "uxp";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const MODAL_DIALOG_ID = "command-modal";
 const MODAL_ROOT_ID = "modal-root";
@@ -66,7 +67,9 @@ function openModal(): void {
   };
   root.render(
     <React.StrictMode>
-      <ModalContent onClose={onClose} />
+      <AuthProvider>
+        <ModalContent onClose={onClose} />
+      </AuthProvider>
     </React.StrictMode>
   );
 

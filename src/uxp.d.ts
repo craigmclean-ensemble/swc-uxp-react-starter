@@ -14,6 +14,24 @@ interface HTMLDialogElement {
  * @see https://developer.adobe.com/photoshop/uxp/2022/guides/uxp_guide/uxp-misc/manifest-v5/
  */
 declare module "uxp" {
+  export const entrypoints: {
+    setup(options: EntrypointsSetupOptions): void;
+  } | undefined;
+
+  export const storage: {
+    secureStorage: {
+      getItem(key: string): Promise<string | null>;
+      setItem(key: string, value: string): Promise<void>;
+      removeItem(key: string): Promise<void>;
+      clear(): Promise<void>;
+    };
+  };
+
+  export const shell: {
+    /** Opens a URL in the default system browser. Requires manifest launchProcess permission (e.g. schemes: ["https"]). */
+    openExternal(url: string): Promise<void>;
+  };
+
   export interface PanelCreateContext {
     create?(rootNode: HTMLElement): void;
     show?(rootNode: HTMLElement, data?: unknown): void;
@@ -32,7 +50,4 @@ declare module "uxp" {
     commands?: Record<string, { run(): void; cancel?(): void } | (() => void)>;
   }
 
-  export const entrypoints: {
-    setup(options: EntrypointsSetupOptions): void;
-  } | undefined;
 }
